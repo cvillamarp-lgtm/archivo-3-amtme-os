@@ -20,6 +20,8 @@ import { Analytics } from "@vercel/analytics/react";
 import Auth from "./pages/Auth";
 
 // Public pages (not protected)
+const PublicLanding = lazyWithRecovery(() => import("./pages/PublicLanding"));
+const PublicEpisodes = lazyWithRecovery(() => import("./pages/PublicEpisodes"));
 const Pricing = lazyWithRecovery(() => import("./pages/Pricing"));
 
 // ── Lazy pages (with chunk-error recovery) ────────────────────────────────────
@@ -201,16 +203,22 @@ const App = () => (
             <Sonner />
             <BrowserRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
               <Routes>
+                {/* Public routes */}
+                <Route path="/" element={<R C={PublicLanding} />} />
+                <Route path="/episodios" element={<R C={PublicEpisodes} />} />
+                <Route path="/episodios/:slug" element={<R C={PublicEpisodes} />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/pricing" element={<R C={Pricing} />} />
+
+                {/* Protected routes */}
                 <Route
                   path="*"
                   element={
                     <ProtectedRoute>
                       <AppLayout>
                         <Routes>
-                          {/* Main routes */}
-                          <Route path="/" element={<R C={Index} />} />
+                          {/* Main studio routes */}
+                          <Route path="/studio" element={<R C={Index} />} />
                           <Route path="/episodes" element={<R C={Episodes} />} />
                           <Route path="/episodes/:id" element={<R C={EpisodeWorkspace} />} />
                           <Route path="/factory" element={<R C={ContentFactory} />} />

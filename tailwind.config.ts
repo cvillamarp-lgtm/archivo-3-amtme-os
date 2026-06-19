@@ -37,7 +37,15 @@ export default {
 
       /* ── Brand + semantic colors ── */
       colors: {
-        /* AMTME brand tokens */
+        /* AMTME brand tokens — Editorial landing */
+        cream:        "#f5f2ea",
+        navy:         "#0c1f36",
+        lime:         "#fee94b",
+        ink:          "#111111",
+        bluegray:     "#687680",
+        "amtme-red":  "#e74c3c",
+
+        /* AMTME legacy tokens */
         "amtme-navy":  "#083A4F",
         "amtme-sand":  "#E5E1DD",
         "amtme-teal":  "#407E8C",
